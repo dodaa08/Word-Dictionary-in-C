@@ -4,13 +4,12 @@
 #define MAX_WORD 100
 #define FILE_NAME "dict.txt"
 
-int addWord(char *word);    // Normalize the input, Check duplicates, Add words to .txt one word per line.
-int searchWord(char *word);  // Search a specific and returns the word if exist
-int deleteWord(char *word);  // Checks the word from file, Delete if exist
-void displayWords();          // Checks if the words exist, Display all the words if exist.
+int addWord(char *word);   
+int searchWord(char *word);  
+int deleteWord(char *word); 
+void displayWords();          
 
 int main(){  
-   // Give user a choice for CLI
    int choice;
    char word[MAX_WORD];
 
@@ -132,7 +131,7 @@ int searchWord(char * word){
     char line[MAX_WORD];
     rewind(fp);
     // A check for the word to not to exist already in file
-    while(fgets(line, sizeof(line) , fp)){  // Accessing the content from the file..
+    while(fgets(line, sizeof(line) , fp)){
         if(strstr(line, word) != NULL){
             printf("Word Found: %s\n", word);
             fclose(fp);
@@ -185,7 +184,7 @@ int deleteWord(char *word){
 
 void displayWords(){
     // Open file in read mode using code
-    FILE *fp = fopen(FILE_NAME, "r");  // fp pointing to the txt file
+    FILE *fp = fopen(FILE_NAME, "r");
     char line[MAX_WORD];
     if (fp == NULL) {
         printf("No words found \n");
@@ -194,7 +193,7 @@ void displayWords(){
     }
 
     // Print all the words till end
-    while(fgets(line, sizeof(line) , fp)){  // Accessing the content from the file..
+    while(fgets(line, sizeof(line) , fp)){
         printf("%s", line);
     }
 
