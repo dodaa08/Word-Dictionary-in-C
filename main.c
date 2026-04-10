@@ -12,6 +12,8 @@ void displayWords();
 int main(){  
    int choice;
    char word[MAX_WORD];
+   FILE *fp = fopen(FILE_NAME, "a");
+   fclose(fp);
 
    while(1){
       printf("\n-- Word Dictionary ---\n");
@@ -22,7 +24,11 @@ int main(){
       printf("5. Exit \n");
 
       printf("Enter a choice: ");
-      scanf("%d", &choice);
+      if(scanf("%d", choice) != 1){
+          while(getchar() != '\n');
+          printf("Invalid Choice!!");
+          continue;
+      }
       getchar();
 
       switch(choice){
@@ -82,11 +88,7 @@ int main(){
 
             printf("Exiting the CLI..");
             exit(0);
-        }
-            
-        default: {
-            printf("Invalid case \n");
-        }
+        };
       }
    }
 };
