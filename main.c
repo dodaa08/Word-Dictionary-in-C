@@ -98,7 +98,7 @@ int addWord(char *word){
     
     if (fp == NULL) {
         printf("Error opening file!\n");
-        fclose(fp);
+        // fclose(fp);
         return 0;
     }
 
@@ -114,7 +114,8 @@ int addWord(char *word){
         }
     }
 
-    fputs(word, fp);
+    fp = fopen(FILE_NAME, "a");
+    
     fprintf(fp, "%s\n", word);
     fclose(fp);
     return 1;
@@ -124,7 +125,7 @@ int searchWord(char * word){
     FILE *fp = fopen(FILE_NAME, "r");
     if (fp == NULL) {
         printf("Error opening file!\n");
-        fclose(fp);
+        // fclose(fp);
         return 0;
     }
 
@@ -133,7 +134,7 @@ int searchWord(char * word){
     // A check for the word to not to exist already in file
     while(fgets(line, sizeof(line) , fp)){  // Accessing the content from the file..
         if(strstr(line, word) != NULL){
-            fprintf(fp, "%s\n", word);
+            printf("Word Found: %s\n", word);
             fclose(fp);
             return 1;
         }
@@ -146,40 +147,29 @@ int searchWord(char * word){
 
 int deleteWord(char *word){
     FILE *fp = fopen(FILE_NAME, "r");
+    FILE *tfp = fopen("temp.txt", "w");
     
 
     if(fp == NULL){
         printf("Error opening file!\n");
-        fclose(fp);
+        // fclose(fp);
         return 0;
     }
     char line[MAX_WORD];
     int found = 0;
     
-    while(fgets(line, sizeof(line), word)){
-        if(strstr(line, word) != NULL){
-            printf("Word found.., deleting now");
-            
-            // 
-            FILE *tfp = fopen("temp.txt", "w");
-            
-            if(tfp == NULL){
-                printf("Error opening temp file!\n");
-                fclose(fp);
-                return 0;
-            };
-
+    while(fgets(line, sizeof(line), fp)){      
             line[strcspn(line, "\n")] = 0; 
             if(strcmp(line, word) == 0){       // strcmp instead of strstr
                 found = 1;                     // skip this line (don't copy it)
             } else {
                 fprintf(tfp, "%s\n", line);    // copy everything else
             }
-
-            fclose(fp);
-            fclose(tfp);
+            
         }
-    }
+
+    fclose(fp);
+    fclose(tfp);
 
     if(found){
         remove(FILE_NAME);         // delete original
@@ -191,7 +181,7 @@ int deleteWord(char *word){
     }
 
     return found;
-}
+    };
 
 void displayWords(){
     // Open file in read mode using code
@@ -199,7 +189,7 @@ void displayWords(){
     char line[MAX_WORD];
     if (fp == NULL) {
         printf("No words found \n");
-        fclose(fp);
+        // fclose(fp);
         return;
     }
 
