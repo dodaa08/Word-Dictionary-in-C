@@ -113,7 +113,7 @@ int addWord(char *word){
             return 0;
         }
     }
-
+    fclose(fp);
     fp = fopen(FILE_NAME, "a");
     
     fprintf(fp, "%s\n", word);
