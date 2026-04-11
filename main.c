@@ -68,7 +68,7 @@ int main(){
         case 3: {
 
             printf("Write a word you want to delete: ");
-            fgets(word, MAX_WORD, stdin); // gets the word from user
+            fgets(word, MAX_WORD, stdin);
             word[strcspn(word, "\n")] = 0;
             int deleted = deleteWord(word);
             if(deleted){
@@ -131,13 +131,11 @@ int addWord(char *word){
     
     if (fp == NULL) {
         printf("Error opening file!\n");
-        // fclose(fp);
         return 0;
     }
 
     char line[MAX_WORD];
     rewind(fp);
-    // A check for the word to not to exist already in file
 
     while(fgets(line, sizeof(line) , fp)){
         if(strstr(line, word) != NULL){
@@ -158,13 +156,11 @@ int searchWord(char * word){
     FILE *fp = fopen(FILE_NAME, "r");
     if (fp == NULL) {
         printf("Error opening file!\n");
-        // fclose(fp);
         return 0;
     }
 
     char line[MAX_WORD];
     rewind(fp);
-    // A check for the word to not to exist already in file
     while(fgets(line, sizeof(line) , fp)){
         if(strstr(line, word) != NULL){
             printf("Word Found: %s\n", word);
@@ -184,7 +180,6 @@ int deleteWord(char *word){
 
     if(fp == NULL){
         printf("Error opening file!\n");
-        // fclose(fp);
         return 0;
     }
     char line[MAX_WORD];
@@ -204,11 +199,11 @@ int deleteWord(char *word){
     fclose(tfp);
 
     if(found){
-        remove(FILE_NAME);         // delete original
-        rename("temp.txt", FILE_NAME);  // temp becomes the new dict
+        remove(FILE_NAME);
+        rename("temp.txt", FILE_NAME);
         printf("Word deleted.\n");
     } else {
-        remove("temp.txt");        // no change needed, discard temp
+        remove("temp.txt");
         printf("Word not found.\n");
     }
 
@@ -216,12 +211,10 @@ int deleteWord(char *word){
     };
 
 void displayWords(){
-    // Open file in read mode using code
     FILE *fp = fopen(FILE_NAME, "r");
     char line[MAX_WORD];
     if (fp == NULL) {
         printf("No words found \n");
-        // fclose(fp);
         return;
     }
 
@@ -239,7 +232,6 @@ int updateWord(char *word, char *updatedWord){
 
     if(fp == NULL){
         printf("Error opening file!\n");
-        // fclose(fp);
         return 0;
     }
     char line[MAX_WORD];
@@ -251,7 +243,7 @@ int updateWord(char *word, char *updatedWord){
                 fprintf(tfp, "%s\n", updatedWord);
                 found = 1;                     
             } else {
-                fprintf(tfp, "%s\n", line);    // copy everything else
+                fprintf(tfp, "%s\n", line);
             }
             
         }
@@ -260,11 +252,11 @@ int updateWord(char *word, char *updatedWord){
     fclose(tfp);
 
     if(found){
-        remove(FILE_NAME);         // delete original
-        rename("temp.txt", FILE_NAME);  // temp becomes the new dict
+        remove(FILE_NAME);        
+        rename("temp.txt", FILE_NAME);  
         printf("Word Updated.\n");
     } else {
-        remove("temp.txt");        // no change needed, discard temp
+        remove("temp.txt");      
         printf("Word not found.\n");
     }
 
