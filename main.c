@@ -123,7 +123,6 @@ int updateWord(TrieNode* root, const char* word, const char* newWord){
 };
 
 
-
 // PrintAllWords in sorted order
 
 void printAllWords(TrieNode* node, char* prefix, int len){
@@ -195,6 +194,31 @@ void loadFromFile(){
         }
     }
 }
+
+
+// Prefix Search auto suggestions
+void searchPrefix(TrieNode* root, const char* prefix){
+    if(strlen(prefix) == 0) return;
+
+    TrieNode* node = root;
+
+    for(int i = 0; prefix[i] != '\0'; i++){
+        int idx = (unsigned char)prefix[i];
+
+        if(node->children[idx] == NULL) return;
+        node = node->children[idx];
+    }
+
+    char buffer[100] = {0};
+    for(int i = 0; prefix[i] != '\0'; i++){
+        buffer[i] = prefix[i];
+    };
+
+    printAllWords(node, buffer, strlen(prefix));
+
+};
+
+
 
 // Free Trie
 
@@ -354,7 +378,8 @@ int main(){
             if(searchWord(root, word)){
                 printf(GREEN "\n✓ Word exists.\n" RESET);
             } else {
-                printf(RED "\n✗ Word not found.\n" RESET);
+                printf(RED "\n✗ Exact word not found. Showing prefix matches:\n\n" RESET);
+                searchPrefix(root, word);
             }
             pauseScreen();
             break;
