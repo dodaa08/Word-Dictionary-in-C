@@ -252,26 +252,26 @@ void runTests(){
     int testWords = 0;
 
     char* words[100] = {
-        "apple", "banana", "cherry", "date", "elderberry",
-        "fig", "grape", "honeydew", "kiwi", "lemon",
-        "mango", "nectarine", "orange", "papaya", "quince",
-        "raspberry", "strawberry", "tangerine", "ugli", "vanilla",
-        "watermelon", "xigua", "yellowfruit", "zucchini", "apricot",
-        "blueberry", "cantaloupe", "dragonfruit", "guava", "jackfruit",
-        "kumquat", "lime", "mulberry", "olive", "peach",
-        "plum", "pomegranate", "starfruit", "tamarind", "avocado",
-        "almond", "cashew", "walnut", "pistachio", "hazelnut",
-        "pecan", "chestnut", "peanut", "coconut", "macadamia",
-        "cat", "dog", "bird", "fish", "rabbit",
-        "tiger", "lion", "bear", "wolf", "fox",
-        "deer", "horse", "sheep", "goat", "cow",
-        "elephant", "giraffe", "zebra", "monkey", "panda",
-        "python", "cobra", "viper", "gecko", "iguana",
-        "eagle", "falcon", "parrot", "penguin", "flamingo",
-        "salmon", "tuna", "shark", "whale", "dolphin",
-        "rose", "tulip", "daisy", "orchid", "jasmine",
-        "lavender", "sunflower", "poppy", "lotus", "lily",
-        "oak", "pine", "maple", "birch", "cedar"
+        "ability", "absence", "academy", "accident", "achieve",
+        "acquire", "balance", "battle", "beauty", "belief",
+        "blanket", "blossom", "capital", "capture", "carbon",
+        "castle", "ceiling", "certain", "clarity", "climate",
+        "collect", "comfort", "command", "complex", "concern",
+        "connect", "consist", "content", "convert", "courage",
+        "damage", "danger", "debate", "decide", "defend",
+        "define", "deliver", "demand", "design", "develop",
+        "digital", "discuss", "distant", "divide", "domain",
+        "dynamic", "effect", "element", "emerge", "empire",
+        "enable", "engage", "engine", "ensure", "entire",
+        "escape", "evolve", "expand", "expect", "explore",
+        "factor", "filter", "finish", "forest", "forward",
+        "foster", "future", "gather", "global", "govern",
+        "growth", "harbor", "harvest", "health", "history",
+        "honest", "humble", "impact", "injury", "invest",
+        "island", "justice", "launch", "leader", "legacy",
+        "lesson", "logical", "manage", "master", "memory",
+        "method", "mirror", "mobile", "modern", "moment",
+        "nature", "normal", "origin", "output", "palace"
     };
 
     // insert 100 words
@@ -282,36 +282,40 @@ void runTests(){
     printf(testWords == 100 ? GREEN "✓ Inserted 100 words\n" RESET : RED "✗ Insert failed — got %d\n" RESET, testWords);
 
     // search existing word
-    printf(searchWord(testRoot, "apple") ? GREEN "✓ Search existing word (apple)\n" RESET : RED "✗ Search failed (apple)\n" RESET);
+    printf(searchWord(testRoot, "ability") ? GREEN "✓ Search existing word (ability)\n" RESET : RED "✗ Search failed (ability)\n" RESET);
 
     // search another existing word
-    printf(searchWord(testRoot, "cedar") ? GREEN "✓ Search existing word (cedar)\n" RESET : RED "✗ Search failed (cedar)\n" RESET);
+    printf(searchWord(testRoot, "palace") ? GREEN "✓ Search existing word (palace)\n" RESET : RED "✗ Search failed (palace)\n" RESET);
 
     // search non existing word
     printf(!searchWord(testRoot, "xyz123") ? GREEN "✓ Search non-existing word (xyz123)\n" RESET : RED "✗ Search failed (xyz123)\n" RESET);
 
     // duplicate insert
     int before = testWords;
-    insert(testRoot, "apple");
+    insert(testRoot, "ability");
     printf(testWords == before ? GREEN "✓ Duplicate insert blocked\n" RESET : RED "✗ Duplicate insert allowed\n" RESET);
 
     // delete existing word
-    deleteWord(testRoot, "apple");
+    deleteWord(testRoot, "ability");
     testWords--;
-    printf(!searchWord(testRoot, "apple") ? GREEN "✓ Delete existing word (apple)\n" RESET : RED "✗ Delete failed (apple)\n" RESET);
+    printf(!searchWord(testRoot, "ability") ? GREEN "✓ Delete existing word (ability)\n" RESET : RED "✗ Delete failed (ability)\n" RESET);
 
     // delete non existing word
     printf(!deleteWord(testRoot, "xyz123") ? GREEN "✓ Delete non-existing word handled\n" RESET : RED "✗ Delete non-existing failed\n" RESET);
 
     // update word
-    updateWord(testRoot, "banana", "blueberry2");
+    updateWord(testRoot, "balance", "balanced");
     testWords--;
-    printf(searchWord(testRoot, "blueberry2") && !searchWord(testRoot, "banana")
-        ? GREEN "✓ Update word (banana → blueberry2)\n" RESET
+    printf(searchWord(testRoot, "balanced") && !searchWord(testRoot, "balance")
+        ? GREEN "✓ Update word (balance → balanced)\n" RESET
         : RED "✗ Update failed\n" RESET);
 
+    // prefix search test
+    printf(CYAN "\nPrefix search 'co' results:\n" RESET);
+    searchPrefix(testRoot, "co");
+
     // word count after all operations
-    printf(testWords == 98 ? GREEN "✓ Word count correct after operations (98)\n" RESET : RED "✗ Word count wrong — got %d\n" RESET, testWords);
+    printf(testWords == 98 ? GREEN "\n✓ Word count correct after operations (98)\n" RESET : RED "✗ Word count wrong — got %d\n" RESET, testWords);
 
     printf(CYAN "\n--- Tests Done ---\n\n" RESET);
     totalWords = savedTotal;
