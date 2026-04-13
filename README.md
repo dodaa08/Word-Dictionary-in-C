@@ -1,6 +1,6 @@
 # Word Dictionary CLI
 
-A terminal-based dictionary app that lets you add, search, delete, update, and display words — powered by a Trie data structure for fast lookups and persistent storage to disk.
+A terminal-based dictionary app that lets you add, search, delete, update, and display words powered by a Trie data structure for fast lookups and persistent storage to disk.
 
 ---
 
