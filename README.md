@@ -6,7 +6,7 @@ A terminal-based dictionary app that lets you add, search, delete, update, and d
 
 ## How It Works
 
-Words are stored in a Trie in memory while the program runs. On exit, the trie is serialized to `dict.txt`. On startup, words are loaded back from `dict.txt` into the trie — so your dictionary persists across sessions.
+Words are stored in a Trie in memory while the program runs. On exit, the trie is serialized to `dict.txt`. On startup, words are loaded back from `dict.txt` into the trie  so your dictionary persists across sessions.
 
 All operations (insert, search, delete) run in **O(m)** time, where m is the length of the word, completely independent of how many words are in the dictionary.
 
@@ -15,7 +15,7 @@ All operations (insert, search, delete) run in **O(m)** time, where m is the len
 ## Features
 
 - Add, search, delete, update, and display words
-- **Prefix search** — when an exact word isn't found, matching words with the same prefix are shown automatically
+- **Prefix search**  when an exact word isn't found, matching words with the same prefix are shown automatically
 - Trie data structure as an in-memory cache
 - Persistent storage via `dict.txt`
 - Words displayed in **sorted (ASCII) order**
@@ -59,7 +59,7 @@ gcc -o dict main.c
 - Choose an option by entering the number
 - After each operation, you are shown the result
 - Press **Enter** to go back to the menu
-- Choose **6** to save and exit — words are written to `dict.txt`
+- Choose **6** to save and exit  words are written to `dict.txt`
 
 ### Search behaviour
 
@@ -86,9 +86,9 @@ root
           └── 'g'  ← isEndOfWord = 1  ("dog")
 ```
 
-- `"cat"` and `"car"` share the prefix `"ca"` — stored only once
+- `"cat"` and `"car"` share the prefix `"ca"`  stored only once
 - The `isEndOfWord` flag marks where a valid word ends
-- Search walks the path — if it falls off the tree, the word doesn't exist
+- Search walks the path  if it falls off the tree, the word doesn't exist
 - Each node holds up to 128 children, supporting the full ASCII range
 
 ---
@@ -105,11 +105,11 @@ A built-in test suite runs automatically on startup, completely isolated from yo
 | Duplicate insert | Verifies inserting the same word twice is blocked |
 | Delete | Confirms `"ability"` is removed and no longer found |
 | Delete (non-existing) | Confirms graceful handling of missing words |
-| Update | `"balance"` → `"balanced"` — old gone, new present |
+| Update | `"balance"` → `"balanced"`  old gone, new present |
 | Prefix search | Live output of all words matching prefix `"co"` |
 | Word count | Confirms count is 98 after all operations |
 
-The test trie is discarded after the suite — your saved words are never affected.
+The test trie is discarded after the suite  your saved words are never affected.
 
 ---
 
@@ -124,7 +124,7 @@ If `dict.txt` does not exist yet (first run), the dictionary starts empty.
 ## Limitations
 
 - Maximum word length: **100 characters**
-- **Case-sensitive** — `"Apple"` and `"apple"` are treated as different words
+- **Case-sensitive**  `"Apple"` and `"apple"` are treated as different words
 - Delete marks the end-of-word flag as false but does not free unused trie nodes from memory
 
 ---
