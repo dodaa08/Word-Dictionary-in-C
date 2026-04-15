@@ -19,7 +19,6 @@ All operations (insert, search, delete) run in **O(m)** time, where m is the len
 - Trie data structure as an in-memory cache
 - Persistent storage via `dict.txt`
 - Words displayed in **sorted (ASCII) order**
-- Full **ASCII support** (case-sensitive, supports 128 characters)
 - Colored CLI output
 - Built-in test suite that runs on startup
 
