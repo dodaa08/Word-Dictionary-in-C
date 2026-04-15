@@ -1,6 +1,6 @@
 # Word Trie Dictionary C
 
-A terminal-based dictionary app that lets you add, search, delete, update, and display words. Powered by a **Trie** (prefix tree) for fast O(m) lookups and persistent storage to disk.
+A terminal-based dictionary app that lets you add, search, delete, update, and display words. With a **Trie** (prefix tree) for fast O(m) lookups and persistent storage to disk.
 
 ---
 
