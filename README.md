@@ -112,27 +112,3 @@ A built-in test suite runs automatically on startup, completely isolated from yo
 The test trie is discarded after the suite  your saved words are never affected.
 
 ---
-
-## Persistence
-
-On **exit (option 6)**, all words are written to `dict.txt`, one word per line, in sorted order. On the next startup, `dict.txt` is read back into the trie automatically.
-
-If `dict.txt` does not exist yet (first run), the dictionary starts empty.
-
----
-
-## Limitations
-
-- Maximum word length: **100 characters**
-- **Case-sensitive**  `"Apple"` and `"apple"` are treated as different words
-- Delete marks the end-of-word flag as false but does not free unused trie nodes from memory
-
----
-
-## Possible Future Improvements
-
-- Free unused trie nodes after deletion to reclaim memory
-- Case-insensitive mode
-- Word count command
-- Import words from a custom file
-- Wildcard or fuzzy search
